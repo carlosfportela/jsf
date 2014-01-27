@@ -1,5 +1,7 @@
 package model;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -14,7 +16,7 @@ import org.hibernate.envers.Audited;
 @Audited
 @SequenceGenerator(name="seq_pessoa",sequenceName="seq_pessoa",allocationSize=1)
 @Table(name="pessoa")
-public class Pessoa {
+public class Pessoa implements Serializable{
 	
 	@Id
 	@GeneratedValue(generator="seq_pessoa",strategy=GenerationType.AUTO)
