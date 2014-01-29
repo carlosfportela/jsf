@@ -21,5 +21,17 @@
         <property name="hibernate.c3p0.max_statements">10</property>
         <property name="hibernate.c3p0.idle_test_period">3000</property>
 
+<!--         Não está usando o boneCP devido a uma incompatibilidade da versão 0.8.0 com o hibernate 4.3 -->
+<!-- 		<property name="hibernate.connection.provider_class">com.jolbox.bonecp.provider.BoneCPConnectionProvider</property> -->
+<!-- 		<property name="bonecp.idleMaxAge">240</property> -->
+<!-- 		<property name="bonecp.idleConnectionTestPeriod">60</property> -->
+<!-- 		<property name="bonecp.partitionCount">3</property> -->
+<!-- 		<property name="bonecp.acquireIncrement">10</property> -->
+<!-- 		<property name="bonecp.maxConnectionsPerPartition">3</property> -->
+<!-- 		<property name="bonecp.minConnectionsPerPartition">1</property> -->
+<!-- 		<property name="bonecp.statementsCacheSize">10</property> -->
+<!-- 		<property name="bonecp.releaseHelperThreads">3</property> -->
+
+
     </session-factory> 
 </hibernate-configuration> 
