@@ -1,31 +1,30 @@
 package action;
 
-import hibernate.HibernateUtil;
-
 import java.io.Serializable;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
+import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 
+import jpa.PessoaRepositorio;
+import jpa.PessoaRepositorioImpl;
 import model.Pessoa;
-
-import org.hibernate.Session;
-
-import dao.Dao;
-import dao.DaoFactory;
 
 @ManagedBean(name = "mbPessoa")
 @ViewScoped
 public class PessoaController implements Serializable{
 	
-	Session session = HibernateUtil.getSession();
+/*	Session session = HibernateUtil.getSession();
 	DaoFactory fac = new DaoFactory(session);
 	
-	Dao<Pessoa> dao = fac.getPessoaDao();
+	Dao<Pessoa> dao = fac.getPessoaDao();*/
+	
+	@EJB
+	private PessoaRepositorio rep;
 	
 
 	private Pessoa pessoa;
@@ -52,11 +51,11 @@ public class PessoaController implements Serializable{
 	public void salvar() {
 
 		try{
-			fac.beginTransaction();
+//			rep.beginTransaction();
 			
-			dao.salvar(pessoa);
+			rep.save(pessoa);
 			
-			fac.commit();
+//			fac.commit();
 			
 			FacesContext.getCurrentInstance().addMessage(null,
 					new FacesMessage(FacesMessage.SEVERITY_INFO, "Item cadastrado", "Item cadastrado no banco!"));
@@ -74,7 +73,7 @@ public class PessoaController implements Serializable{
 	public List<Pessoa> getPessoas() {
 
 		
-		return dao.listarTudo();
+		return rep.findAll();
 	}
 
 }
